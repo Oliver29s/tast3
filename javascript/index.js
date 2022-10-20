@@ -12,7 +12,7 @@ function imprimirCartas(array,id) {
                         <p class="card-text"></p>    
                         <div class="d-flex justify-content-between">
                             <h6>Price: ${event.price}</h6>
-                            <a href="#" class="btn btn-primary">Details</a>
+                        <a href="../htmls/detalles.html" class="btn btn-primary">Details</a>
     
                         </div>
                     </div>
@@ -30,7 +30,7 @@ let printCategories = (array,id) => {
     array.forEach(cat =>{
         document.querySelector(`#${id}`).innerHTML +=
             `
-            <label class="d-flex align-items-center p-1" for="${cat.toLowerCase()}">${cat.toUpperCase()}
+            <label class="d-flex align-items-center p-1" for="${cat}">${cat}
                 <input class="d-flex align-items-center m-1 checkbox" type="checkbox" id="${cat.toLowerCase()}" name="letter" value="${cat.toLowerCase()}">
             </label>
             `

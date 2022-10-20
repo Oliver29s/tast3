@@ -1,0 +1,18 @@
+.imagen {
+    object-fit: contain ;
+    
+}
+.div_informacion{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+}
+.comprar{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
+}

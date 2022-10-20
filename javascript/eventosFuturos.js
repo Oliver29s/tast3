@@ -20,7 +20,7 @@ function printEvents(array,id) {
                         <p class="card-text"></p>    
                         <div class="d-flex justify-content-between">
                             <h6>Price: ${event.price}</h6>
-                            <a href="#" class="btn btn-primary">Details</a>
+                            <a href="./detalles.html" class="btn btn-primary">Details</a>
     
                         </div>
                     </div>
