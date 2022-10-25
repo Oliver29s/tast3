@@ -1,29 +1,22 @@
 
+async function consumirApi(){
 
-function imprimirCartas(array,id) {
-    document.querySelector(`#${id}`).innerHTML = ""
-    array.forEach(event =>{
-        document.querySelector(`#${id}`).innerHTML +=
-            `
-            <div class=" card p-1" style="width: 15rem; ">
-                    <img src="${event.image}" class="card-img-top" alt="imagen1">
-                    <div class="card-body">
-                        <h5 class="card-title">${event.name}</h5>
-                        <p class="card-text"></p>    
-                        <div class="d-flex justify-content-between">
-                            <h6>Price: ${event.price}</h6>
-                        <a href="../htmls/detalles.html" class="btn btn-primary">Details</a>
-    
-                        </div>
-                    </div>
-                </div>
-    
-            `
-    })
-}
-imprimirCartas(events,'events')
+    try{
+    let  eventsJson = await fetch('https://mh-amazing.herokuapp.com/amazing')
+         todosLosEventos = await eventsJson.json()
+    }catch(error){
+        console.log("error");
+    }
 
-let categorias = new Set(events.map(element => element.category))
+    let eventsApi = todosLosEventos.events
+    console.log(eventsApi)
+    
+
+
+
+    imprimirCartas(eventsApi,'events')
+
+let categorias = new Set(eventsApi.map(element => element.category))
 categorias = [...categorias]
 let printCategories = (array,id) => {
     document.querySelector(`#${id}`).innerHTML = ""
@@ -37,33 +30,77 @@ let printCategories = (array,id) => {
     })
     let checks = document.querySelectorAll('.checkbox')
     checks.forEach(cadaCheck => {
-        cadaCheck.addEventListener('click',() => search(events))
+        cadaCheck.addEventListener('click',() => search(eventsApi))
     })
-    
+
 }
 printCategories(categorias,'checks')
 
-
 let arrayEventos = categorias.map(cadaCategoria => {
-    let arrayFiltrado = events.filter(cadaEvento => cadaEvento.category === cadaCategoria)
+    let arrayFiltrado = eventsApi.filter(cadaEvento => cadaEvento.category === cadaCategoria)
     return arrayFiltrado
 })
 
 function search(array) {
-    
+
     let checks = document.querySelectorAll('.checkbox:checked')
-    
-    
+
     let filterArray = []
     checks.forEach(cadaCategoria => {
         let newArray = array.filter(cadaEvento => cadaEvento.category.toLowerCase() === cadaCategoria.value)
-        
+
         filterArray = filterArray.concat(newArray)
     })
-    
-    if (filterArray.length===0) { 
+
+    if (filterArray.length===0) {
         filterArray = array
     }
     imprimirCartas(filterArray,'events')
 }
+
+
+
+
+
+
+}
+
+consumirApi()
+
+function imprimirCartas(array,id) {
+    document.querySelector(`#${id}`).innerHTML = ""
+    array.forEach(event =>{
+        document.querySelector(`#${id}`).innerHTML +=
+            `
+            <div class="styleCards card p-1" style="width: 15rem; ">
+                    <img src="${event.image}" class="card-img-top" alt="imagen1">
+                    <div class="card-body">
+                        <h5 class="card-title">${event.name}</h5>
+                        <p class="card-text"></p>
+                        <div class="d-flex justify-content-between">
+                            <h5 class="mx-2">Price: ${event.price}</h5>
+                        <a href="./htmls/detalles.html?id=${event.id}" class="btn btn-danger">MAs info.</a>
+
+                        </div>
+                    </div>
+                </div>
+
+            `
+    })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

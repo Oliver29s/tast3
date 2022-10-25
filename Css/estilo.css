@@ -1,18 +1,17 @@
-.imagen {
+.imagenn {
     object-fit: contain ;
+    height: 100%;
+    word-wrap: 100%;
+    border-radius: 15px ;
     
 }
-.div_informacion{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    justify-content: space-around;
+
+
+.card-body{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
 }
-.comprar{
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    justify-content: space-between;
-}
+
+
